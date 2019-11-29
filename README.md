@@ -1,7 +1,7 @@
 # Calc-web
 This a simple calculator app built in react.
 
-## :sparkles: [Demo](https://calc-web.herokuapp.com/)
+### :sparkles: [Demo](https://calc-web.herokuapp.com/)
 
 ## Available Scripts
 
