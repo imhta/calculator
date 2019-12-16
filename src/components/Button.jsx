@@ -1,13 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-function Button({name}) {
-    return (
-    <button>{name}</button>
-    );
+function Button({ name }) {
+  return <button>{name}</button>;
 }
 
 Button.propTypes = {
-    name: PropTypes.string.isRequired
-}
+  name: PropTypes.string.isRequired
+};
 export default Button;
