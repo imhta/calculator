@@ -16,7 +16,7 @@ function ButtonPanel() {
         <Button name="7" color={grey} />
         <Button name="8" color={grey} />
         <Button name="9" color={grey} />
-        <Button name="X" />
+        <Button name="x" />
       </div>
       <div className="row">
         <Button name="4" color={grey} />
