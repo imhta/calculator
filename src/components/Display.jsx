@@ -3,7 +3,7 @@ import './Display.scss';
 import PropTypes from 'prop-types';
 
 function Display({ result }) {
-  return <h1>{result}</h1>;
+  return <div className="Display"><p>{result}</p></div>;
 }
 
 Display.propTypes = {
