@@ -5,7 +5,7 @@ import ButtonPanel from './ButtonPanel.jsx';
 
 function App() {
   return (
-    <div className="App">
+    <div id="App">
       <Display result="0" />
       <ButtonPanel />
     </div>
