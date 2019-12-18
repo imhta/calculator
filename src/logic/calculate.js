@@ -1,11 +1,27 @@
-import operate from './operate.js';
+import action from './action.js';
 
-const calculate = ({ total, next, operation }, btnName) => {
+const calculate = (state, btnName) => {
+  const isOperator = (str) => /^['+','\-','x','÷']$/.test(str);
+
+
+  if (isOperator(btnName)) {
+    if (state.target === 'after') return action(state).changeOperator(btnName).state;
+    return action(state).calculate(btnName).state;
+  }
+
   switch (btnName) {
+    case 'AC':
+      return action(state).clear().state;
     case '+/-':
-      return [total, next].map((i) => i * -1);
+      return action(state).changeSign().state;
+    case '.':
+      return action(state).setDotIfPossible().state;
+    case '%':
+      return action(state).mod().state;
+    case '=':
+      return action(state).equalTo().state;
     default:
-      return operate(operation, total, next);
+      return action(state).append(btnName).state;
   }
 };
 
