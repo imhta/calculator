@@ -13,8 +13,14 @@ A simple calculator PWA app build using react
     git clone https://github.com/imhta/calculator.git
     cd calculator
 ```
-
-
+> To install all required packages
+```bash
+    npm install
+```
+> Start server
+```bash
+    npm start
+```
 ## Tehnical tools:
 
 - HTML & CSS
