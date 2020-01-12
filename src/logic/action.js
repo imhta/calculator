@@ -4,34 +4,37 @@ const action = (state) => ({
   state,
   append(btnName) {
     if (this.state.target === 'after') {
-      this.state.queue = [];
+      this.state.total = [];
       this.state.target = 'next';
+      if (this.state.operation === '=') {
+        this.clear();
+      }
     }
-    this.state.queue.push(btnName);
-    this.state[this.state.target] = this.state.queue.join('');
+    this.state.total.push(btnName);
+    this.state[this.state.target] = this.state.total.join('');
     this.state = { ...this.state };
     return this;
   },
   clear() {
     this.state = {
-      queue: [], total: '', next: '', operation: '', target: 'total',
+      total: [], totalOne: '', next: '', operation: '', target: 'totalOne',
     };
     return this;
   },
   changeSign() {
-    const [total, next] = [this.state.total, this.state.next].map((i) => `${Number(i) * -1}`);
-    if (this.state.queue[0] === '-') this.state.queue.shift();
-    if (total < 0) this.state.queue.unshift('-');
-    this.state = { ...this.state, total, next };
+    const [totalOne, next] = [this.state.totalOne, this.state.next].map((i) => `${Number(i) * -1}`);
+    if (this.state.total[0] === '-') this.state.total.shift();
+    if (totalOne < 0) this.state.total.unshift('-');
+    this.state = { ...this.state, totalOne, next };
     return this;
   },
-  setDotIfPossible(str = this.state.total) {
+  setDotIfPossible(str = this.state.totalOne) {
     if ([...str.matchAll(/\./g)].length < 1) return this.append('0').append('.');
     return this;
   },
   mod() {
-    this.state.total = operate('%', Number(state.total));
-    this.state.queue = this.state.total.split('');
+    this.state.totalOne = operate('%', Number(state.totalOne));
+    this.state.total = this.state.totalOne.split('');
     this.state = { ...this.state };
     return this;
   },
@@ -42,31 +45,18 @@ const action = (state) => ({
   },
   calculate(btnName) {
     if (this.state.operation) {
-      this.state.total = operate(state.operation,
-        Number(this.state.total),
+      this.state.totalOne = operate(state.operation,
+        Number(this.state.totalOne),
         Number(this.state.next));
-      this.state.queue = this.state.total.split('');
+      this.state.total = this.state.totalOne.split('');
       this.state.operation = btnName;
       this.state.target = 'after';
       this.state = { ...this.state };
       return this;
     }
-    this.state.queue = [];
+    this.state.total = [];
     this.state.operation = btnName;
     this.state.target = 'next';
-    return this;
-  },
-  equalTo() {
-    if (this.state.operation) {
-      this.state.total = operate(state.operation,
-        Number(this.state.total),
-        Number(this.state.next));
-      this.state.queue = this.state.total.split('');
-      this.state.operation = '';
-      this.state.target = 'total';
-      this.state = { ...this.state };
-      return this;
-    }
     return this;
   },
 });

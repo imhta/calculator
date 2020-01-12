@@ -1,7 +1,7 @@
 import action from './action.js';
 
 const calculate = (state, btnName) => {
-  const isOperator = (str) => /^['+','\-','x','÷']$/.test(str);
+  const isOperator = (str) => /^['+','\-','x','÷','=']$/.test(str);
 
 
   if (isOperator(btnName)) {
@@ -18,8 +18,6 @@ const calculate = (state, btnName) => {
       return action(state).setDotIfPossible().state;
     case '%':
       return action(state).mod().state;
-    case '=':
-      return action(state).equalTo().state;
     default:
       return action(state).append(btnName).state;
   }

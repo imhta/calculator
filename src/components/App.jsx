@@ -6,14 +6,14 @@ import calculate from '../logic/calculate.js';
 
 function App() {
   const [state, setState] = useState({
-    queue: [], total: '', next: '', operation: '', target: 'total',
+    total: [], totalOne: '', next: '', operation: '', target: 'totalOne',
   });
   const handleClick = (btnName) => {
     setState(calculate(state, btnName));
   };
   return (
     <div id="App">
-      <Display result={state.queue.join('') || '0'} />
+      <Display result={state.total.join('') || '0'} />
       <ButtonPanel clickHandler={handleClick} />
     </div>
   );
